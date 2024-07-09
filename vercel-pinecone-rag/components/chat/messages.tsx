@@ -3,8 +3,9 @@ import { useRef } from "react";
 
 const Messages = ({ messages }: { messages: Message[] }) => {
   const messagesEnfRef = useRef<HTMLDivElement | null>(null);
+
   return (
-    <div className="flex flex-grow flex-col justify-end overflow-y-scroll rounded-lg border-2 border-gray-600 bg-gray-700 p-6">
+    <div className="h-svh-[300px] flex flex-grow flex-col justify-end overflow-y-scroll rounded-lg border-2 border-gray-600 bg-gray-700 p-6">
       {messages?.map((msg, index) => (
         <div
           key={index}

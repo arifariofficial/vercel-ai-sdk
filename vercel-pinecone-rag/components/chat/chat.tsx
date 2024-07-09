@@ -16,7 +16,7 @@ const Chat: React.FC<Chat> = ({
   messages,
 }) => {
   return (
-    <div id="chat" className="mx-auto flex w-full max-w-5xl flex-col">
+    <div id="chat" className="mx-auto flex h-full w-full max-w-5xl flex-col">
       <Messages messages={messages} />
       <form
         onSubmit={handleMessageSubmit}
