@@ -1,5 +1,6 @@
 import { Message } from "ai";
-import { ChangeEvent, FormEvent } from "react";
+import React, { ChangeEvent, FormEvent } from "react";
+import Messages from "./messages";
 
 interface Chat {
   input: string;
@@ -8,7 +9,28 @@ interface Chat {
   messages: Message[];
 }
 
-const Chat = () => {
-  return <div>Chat</div>;
+const Chat: React.FC<Chat> = ({
+  input,
+  handleInputChange,
+  handleMessageSubmit,
+  messages,
+}) => {
+  return (
+    <div id="chat" className="p-4">
+      <Messages messages={messages} />
+      <div>
+        <form onSubmit={handleMessageSubmit}>
+          <input
+            type="text"
+            value={input}
+            onChange={handleInputChange}
+            placeholder="Write message"
+            className="text-black"
+          />
+          <span>Press Enter to send</span>
+        </form>
+      </div>
+    </div>
+  );
 };
 export default Chat;
