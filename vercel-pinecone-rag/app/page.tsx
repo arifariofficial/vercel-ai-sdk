@@ -56,7 +56,7 @@ const Page: React.FC = () => {
             handleMessageSubmit={handleMessageSubmit}
             messages={messages}
           />
-          <div className="mt-3 border-t-2">
+          <div>
             <Context className="" selected={context} />
           </div>
         </div>
