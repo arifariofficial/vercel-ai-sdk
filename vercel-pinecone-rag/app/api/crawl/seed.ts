@@ -11,7 +11,7 @@ import {
 import { Crawler, Page } from "./crawler";
 import { truncateStringByBytes } from "@/lib/truncateString";
 import md5 from "md5";
-import { getEmbeedings } from "@/lib/embeddings";
+import { getEmbeddings } from "@/lib/embeddings";
 import { chunkedUpsert } from "@/lib/chunkedUperset";
 
 interface SeedOptions {
@@ -123,7 +123,7 @@ async function prepareDocument(
 async function embedDocument(doc: Document): Promise<PineconeRecord> {
   try {
     // Generate OpenAI embedding for the document content
-    const embeddings = await getEmbeedings(doc.pageContent);
+    const embeddings = await getEmbeddings(doc.pageContent);
 
     // Create a hash of the document content
     const hash = md5(doc.pageContent);

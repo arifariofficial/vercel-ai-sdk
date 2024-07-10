@@ -22,4 +22,30 @@ const getMatchesFromEmbeddings = async (
   }
 
   // Retrieve the list of indexes to check if expected index exists
+  const indexes = (await pinecone.listIndexes())?.indexes;
+  if (!indexes || indexes.filter((i) => i.name === indexName).length !== 1) {
+    throw new Error(`Index ${indexName} does not exist`);
+  }
+
+  // Get the Pinecone index
+  const index = pinecone!.index<Metadata>(indexName);
+
+  // Get the namespace
+  const pineconeNamespace = index.namespace(namespace ?? "");
+
+  try {
+    // Query the index with the defined request
+    const queryResult = await pineconeNamespace.query({
+      vector: embeddings,
+      topK,
+      includeMetadata: true,
+    });
+    return queryResult.matches || [];
+  } catch (error) {
+    // Log the error and throw it
+    console.log("Error querying the embeddings: ", error);
+    throw new Error(`Error querying embeddings: ${error}`);
+  }
 };
+
+export { getMatchesFromEmbeddings };

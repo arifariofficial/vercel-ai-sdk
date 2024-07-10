@@ -1,5 +1,7 @@
-import { Message } from "ai";
-import React, { ChangeEvent, FormEvent } from "react";
+// Chat.tsx
+
+import React, { FormEvent, ChangeEvent } from "react";
+import { Message } from "ai/react";
 import Messages from "./messages";
 
 interface Chat {
@@ -16,24 +18,28 @@ const Chat: React.FC<Chat> = ({
   messages,
 }) => {
   return (
-    <div id="chat" className="mx-auto flex h-full w-full max-w-5xl flex-col">
+    <div id="chat" className="mx-5 mr-4 flex w-full flex-col lg:mx-0 lg:w-3/5">
       <Messages messages={messages} />
-      <form
-        onSubmit={handleMessageSubmit}
-        className="relative mb-5 mt-5 rounded-lg bg-gray-700 px-1"
-      >
-        <input
-          type="text"
-          value={input}
-          onChange={handleInputChange}
-          placeholder="Write message"
-          className="input-glow focus:shadow-outline focus:shadow-outline pr-100 w-full appearance-none rounded border bg-gray-600 px-3 py-2 pl-3 leading-tight text-gray-200 transition-shadow duration-200"
-        />
-        <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3 text-gray-400">
-          Press ⮐ to send
-        </span>
-      </form>
+      <>
+        <form
+          onSubmit={handleMessageSubmit}
+          className="relative mb-5 mt-5 rounded-lg bg-gray-700"
+        >
+          <input
+            title="text"
+            type="text"
+            className="input-glow focus:shadow-outline w-full appearance-none rounded border border-gray-600 bg-gray-600 px-3 py-2 pl-3 pr-10 leading-tight text-gray-200 transition-shadow duration-200 focus:outline-none"
+            value={input}
+            onChange={handleInputChange}
+          />
+
+          <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3 text-gray-400">
+            Press ⮐ to send
+          </span>
+        </form>
+      </>
     </div>
   );
 };
+
 export default Chat;
